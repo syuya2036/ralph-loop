@@ -1,14 +1,56 @@
 {
-	"branchName": "ralph/feature",
+	"branchName": "feat/mini-wc-cli",
 	"userStories": [
 		{
 			"id": "US-001",
-			"title": "Example Story",
+			"title": "Initialize Rust project and Basic Setup",
 			"acceptanceCriteria": [
-				"Create a hello world file",
-				"Verify typecheck passes"
+				"Initialize a new binary project with cargo init if Cargo.toml doesn't exist",
+				"Create a main.rs that prints 'Hello, mini-wc!'",
+				"cargo run executes successfully",
+				"cargo check passes"
 			],
 			"priority": 1,
+			"passes": false,
+			"notes": ""
+		},
+		{
+			"id": "US-002",
+			"title": "Add Argument Parsing",
+			"acceptanceCriteria": [
+				"Add clap dependency to Cargo.toml",
+				"Update main.rs to accept a file path as an argument",
+				"If no argument is provided, print usage help",
+				"cargo check passes"
+			],
+			"priority": 2,
+			"passes": false,
+			"notes": ""
+		},
+		{
+			"id": "US-003",
+			"title": "Implement Line Counting",
+			"acceptanceCriteria": [
+				"Read the file specified by the argument",
+				"Count the number of lines in the file",
+				"Print the line count to stdout (e.g., 'Lines: 10')",
+				"Handle file not found errors gracefully",
+				"cargo test passes (add a unit test for counting logic if possible)"
+			],
+			"priority": 3,
+			"passes": false,
+			"notes": ""
+		},
+		{
+			"id": "US-004",
+			"title": "Implement Word and Byte Counting",
+			"acceptanceCriteria": [
+				"Extend logic to count words and bytes as well",
+				"Print all three stats: Lines, Words, Bytes",
+				"Ensure format is readable",
+				"cargo test passes"
+			],
+			"priority": 4,
 			"passes": false,
 			"notes": ""
 		}
