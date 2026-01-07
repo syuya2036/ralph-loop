@@ -1,5 +1,7 @@
 # Ralph Loop: Universal AI Coding Agent Loop
 
+[日本語README](./README.ja.md)
+
 This repository implements the "Ralph" autonomous coding loop pattern, designed to be agnostic of the specific AI agent being used. Whether you use Claude, Codex, Gemini, or local models via Ollama/Qwen, Ralph Loop orchestrates the process.
 
 > **What is Ralph?**
