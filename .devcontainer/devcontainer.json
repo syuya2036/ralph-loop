@@ -1,0 +1,8 @@
+// See https://containers.dev/implementors/json_reference/ for configuration reference
+{
+	"name": "Ralph Loop Dev Container",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+  "remoteUser": "node"
+}
