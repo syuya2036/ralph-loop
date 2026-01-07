@@ -12,23 +12,23 @@
 
 ## 🚀 セットアップ
 
-中核となる仕組みは `scripts/ralph/` に配置されています。
+中核となる仕組みは `` に配置されています。
 
 0. **インストール**
    このリポジトリの./sciptsをあなたのプロジェクトにコピーします。
 1. **バックログを定義する**
-   `scripts/ralph/prd.json` を編集し、ユーザーストーリーを記述します。
+   `prd.json` を編集し、ユーザーストーリーを記述します。
 2. **環境を設定する**
    プロジェクト内に、エージェントが実行できるテストコマンド（例：`npm test`、`cargo test`）が用意されていることを確認します。
 3. **実行権限を付与する**
-   `chmod +x scripts/ralph/ralph.sh`
+   `chmod +x ./ralph-loop/ralph.sh`
 
 ## 🏃 使い方
 
-`ralph.sh` スクリプトを実行し、第一引数として使用するエージェントのCLIコマンドを渡します。第二引数として最大反復回数を指定できます（デフォルトは10回）。このスクリプトは、エージェントが **標準入力（stdin）** 経由でプロンプトを受け取ることを前提としています。
+`./ralph-loop/ralph.sh` スクリプトを実行し、第一引数として使用するエージェントのCLIコマンドを渡します。第二引数として最大反復回数を指定できます（デフォルトは10回）。このスクリプトは、エージェントが **標準入力（stdin）** 経由でプロンプトを受け取ることを前提としています。
 
 ```bash
-./scripts/ralph/ralph.sh "<YOUR_AGENT_COMMAND>" [最大反復回数]
+./ralph-loop/ralph.sh "<YOUR_AGENT_COMMAND>" [最大反復回数]
 ```
 
 ### 使用例
@@ -37,7 +37,7 @@
 
 ```bash
 # 最大20回まで繰り返す場合
-./scripts/ralph/ralph.sh "claude --dangerously-skip-permissions" 20
+./ralph-loop/ralph.sh "claude --dangerously-skip-permissions" 20
 ```
 
 #### Codex CLI
@@ -46,7 +46,7 @@ OpenAI の自律型エージェントCLIです。
 
 ```bash
 # --full-auto は確認プロンプトを省略します（ヘッドレス実行に必須）
-./scripts/ralph/ralph.sh "codex exec --full-auto" 20
+./ralph-loop/ralph.sh "codex exec --full-auto" 20
 ```
 
 #### Gemini CLI
@@ -55,7 +55,7 @@ Google の生成AIエージェントCLIです。
 
 ```bash
 # --yolo は自律的なアクション実行を有効にします
-./scripts/ralph/ralph.sh "gemini --yolo" 20
+./ralph-loop/ralph.sh "gemini --yolo" 20
 ```
 
 #### Qwen Code
@@ -67,15 +67,15 @@ Alibaba の Qwen エージェントCLIです。
 # 1. .qwen/settings.json を更新し、完全自律モードを許可します
 #    { "permissions": { "defaultMode": "yolo" } }
 # 2. Ralph を実行します（qwen が stdin を受け取る前提）
-./scripts/ralph/ralph.sh "qwen" 20
+./ralph-loop/ralph.sh "qwen" 20
 ```
 
 ## 📁 ファイル構成
 
-* `scripts/ralph/ralph.sh`：メインのループスクリプト
-* `scripts/ralph/prd.json`：プロダクト要件／バックログ
-* `scripts/ralph/progress.txt`：永続的なメモリおよび学習内容のログ
-* `scripts/ralph/prompt.md`：各ループで毎回エージェントに渡されるシステムプロンプト
+* `ralph-loop/ralph.sh`：メインのループスクリプト
+* `prd.json`：プロダクト要件／バックログ
+* `progress.txt`：永続的なメモリおよび学習内容のログ
+* `prompt.md`：各ループで毎回エージェントに渡されるシステムプロンプト
 
 ## 🧠 メモリとコンテキスト管理
 
@@ -87,7 +87,7 @@ Ralph は以下を通じて状態と学習内容を保持します。
 
 ## 特定エージェント向けのカスタマイズ
 
-エージェントが stdin ではなく引数としてプロンプトを受け取る必要がある場合は、`scripts/ralph/ralph.sh` を直接修正するか、小さなラッパースクリプトを作成します。
+エージェントが stdin ではなく引数としてプロンプトを受け取る必要がある場合は、`ralph-loop/ralph.sh` を直接修正するか、小さなラッパースクリプトを作成します。
 
 **ラッパー例（agent-wrapper.sh）：**
 
@@ -101,5 +101,5 @@ PROMPT=$(cat)
 その後、以下のように実行します。
 
 ```bash
-./scripts/ralph/ralph.sh "./agent-wrapper.sh"
+./ralph-loop/ralph.sh "./agent-wrapper.sh"
 ```

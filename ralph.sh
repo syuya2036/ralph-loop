@@ -9,9 +9,9 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(dirname "$(dirname "$SCRIPT_DIR")")" # Assumption: scripts/ralph -> scripts -> root
 
 if [ -z "$AGENT_CMD" ]; then
-  echo "Usage: ./ralph.sh \"<agent command>\" [max_iterations]"
-  echo "Example: ./ralph.sh \"claude --dangerously-skip-permissions\""
-  echo "Example: ./ralph.sh \"openai-cli run\""
+  echo "Usage: ./ralph-loop/ralph.sh \"<agent command>\" [max_iterations]"
+  echo "Example: ./ralph-loop/ralph.sh \"claude --dangerously-skip-permissions\""
+  echo "Example: ./ralph-loop/ralph.sh \"openai-cli run\""
   echo "Environment variables:"
   echo "  MAX_ITERATIONS (default: 10)"
   exit 1

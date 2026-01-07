@@ -12,18 +12,18 @@ This repository implements the "Ralph" autonomous coding loop pattern, designed 
 
 ## 🚀 Setup
 
-The core machinery is located in `scripts/ralph/`.
+The core machinery is located in ``.
 
-1. **Define your backlog**: Edit `scripts/ralph/prd.json` with your user stories.
+1. **Define your backlog**: Edit `prd.json` with your user stories.
 2. **Configure your environment**: Ensure your project has test commands (e.g., `npm test`, `cargo test`) ready for the agent to use.
-3. **Make executable**: `chmod +x scripts/ralph/ralph.sh`
+3. **Make executable**: `chmod +x ./ralph-loop/ralph.sh`
 
 ## 🏃 Usage
 
-Run the `ralph.sh` script and pass your agent's CLI command as the first argument. You can optionally specify the maximum number of iterations as the second argument (default is 10). The script assumes your agent accepts the prompt via **Standard Input (stdin)**.
+Run the `./ralph-loop/ralph.sh` script and pass your agent's CLI command as the first argument. You can optionally specify the maximum number of iterations as the second argument (default is 10). The script assumes your agent accepts the prompt via **Standard Input (stdin)**.
 
 ```bash
-./scripts/ralph/ralph.sh "<YOUR_AGENT_COMMAND>" [MAX_ITERATIONS]
+./ralph-loop/ralph.sh "<YOUR_AGENT_COMMAND>" [MAX_ITERATIONS]
 ```
 
 ### Examples
@@ -31,21 +31,21 @@ Run the `ralph.sh` script and pass your agent's CLI command as the first argumen
 #### Claude Code (Anthropic)
 ```bash
 # Run up to 20 iterations
-./scripts/ralph/ralph.sh "claude --dangerously-skip-permissions" 20
+./ralph-loop/ralph.sh "claude --dangerously-skip-permissions" 20
 ```
 
 #### Codex CLI
 OpenAI's autonomous agent CLI.
 ```bash
 # --full-auto bypasses confirmation prompts (required for headless loop)
-./scripts/ralph/ralph.sh "codex exec --full-auto" 20
+./ralph-loop/ralph.sh "codex exec --full-auto" 20
 ```
 
 #### Gemini CLI
 Google's GenAI agent CLI.
 ```bash
 # --yolo enables autonomous action execution
-./scripts/ralph/ralph.sh "gemini --yolo" 20
+./ralph-loop/ralph.sh "gemini --yolo" 20
 ```
 
 #### Qwen Code
@@ -55,15 +55,15 @@ Alibaba's Qwen agent CLI.
 # 1. Update .qwen/settings.json to allow fully autonomous mode:
 #    { "permissions": { "defaultMode": "yolo" } }
 # 2. Run Ralph (assuming qwen accepts stdin)
-./scripts/ralph/ralph.sh "qwen" 20
+./ralph-loop/ralph.sh "qwen" 20
 ```
 
 ## 📁 File Structure
 
-- `scripts/ralph/ralph.sh`: The main loop script.
-- `scripts/ralph/prd.json`: Your product requirements/backlog.
-- `scripts/ralph/progress.txt`: Persistent memory and learnings log.
-- `scripts/ralph/prompt.md`: The system prompt fed to the agent on every iteration.
+- `ralph-loop/ralph.sh`: The main loop script.
+- `prd.json`: Your product requirements/backlog.
+- `progress.txt`: Persistent memory and learnings log.
+- `prompt.md`: The system prompt fed to the agent on every iteration.
 
 ## 🧠 Memory & Context
 
@@ -74,7 +74,7 @@ Ralph persists memory through:
 
 ## customizing for specific agents
 
-If your agent requires the prompt as an argument instead of stdin, you can modify `scripts/ralph/ralph.sh` or create a small wrapper script.
+If your agent requires the prompt as an argument instead of stdin, you can modify `ralph-loop/ralph.sh` or create a small wrapper script.
 
 **Wrapper Example (agent-wrapper.sh):**
 ```bash
@@ -83,4 +83,4 @@ If your agent requires the prompt as an argument instead of stdin, you can modif
 PROMPT=$(cat)
 # explicit-agent --prompt "$PROMPT"
 ```
-Then run: `./scripts/ralph/ralph.sh "./agent-wrapper.sh"`
+Then run: `./ralph-loop/ralph.sh "./agent-wrapper.sh"`
