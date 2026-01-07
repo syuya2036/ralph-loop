@@ -20,31 +20,32 @@ The core machinery is located in `scripts/ralph/`.
 
 ## 🏃 Usage
 
-Run the `ralph.sh` script and pass your agent's CLI command as the first argument. The script assumes your agent accepts the prompt via **Standard Input (stdin)**.
+Run the `ralph.sh` script and pass your agent's CLI command as the first argument. You can optionally specify the maximum number of iterations as the second argument (default is 10). The script assumes your agent accepts the prompt via **Standard Input (stdin)**.
 
 ```bash
-./scripts/ralph/ralph.sh "<YOUR_AGENT_COMMAND>"
+./scripts/ralph/ralph.sh "<YOUR_AGENT_COMMAND>" [MAX_ITERATIONS]
 ```
 
 ### Examples
 
 #### Claude Code (Anthropic)
 ```bash
-./scripts/ralph/ralph.sh "claude --dangerously-skip-permissions"
+# Run up to 20 iterations
+./scripts/ralph/ralph.sh "claude --dangerously-skip-permissions" 20
 ```
 
 #### Codex CLI
 OpenAI's autonomous agent CLI.
 ```bash
 # --full-auto bypasses confirmation prompts (required for headless loop)
-./scripts/ralph/ralph.sh "codex exec --full-auto"
+./scripts/ralph/ralph.sh "codex exec --full-auto" 20
 ```
 
 #### Gemini CLI
 Google's GenAI agent CLI.
 ```bash
 # --yolo enables autonomous action execution
-./scripts/ralph/ralph.sh "gemini --yolo"
+./scripts/ralph/ralph.sh "gemini --yolo" 20
 ```
 
 #### Qwen Code
@@ -54,7 +55,7 @@ Alibaba's Qwen agent CLI.
 # 1. Update .qwen/settings.json to allow fully autonomous mode:
 #    { "permissions": { "defaultMode": "yolo" } }
 # 2. Run Ralph (assuming qwen accepts stdin)
-./scripts/ralph/ralph.sh "qwen"
+./scripts/ralph/ralph.sh "qwen" 20
 ```
 
 ## 📁 File Structure

@@ -23,10 +23,10 @@
 
 ## 🏃 使い方
 
-`ralph.sh` スクリプトを実行し、第一引数として使用するエージェントのCLIコマンドを渡します。このスクリプトは、エージェントが **標準入力（stdin）** 経由でプロンプトを受け取ることを前提としています。
+`ralph.sh` スクリプトを実行し、第一引数として使用するエージェントのCLIコマンドを渡します。第二引数として最大反復回数を指定できます（デフォルトは10回）。このスクリプトは、エージェントが **標準入力（stdin）** 経由でプロンプトを受け取ることを前提としています。
 
 ```bash
-./scripts/ralph/ralph.sh "<YOUR_AGENT_COMMAND>"
+./scripts/ralph/ralph.sh "<YOUR_AGENT_COMMAND>" [最大反復回数]
 ```
 
 ### 使用例
@@ -34,7 +34,8 @@
 #### Claude Code（Anthropic）
 
 ```bash
-./scripts/ralph/ralph.sh "claude --dangerously-skip-permissions"
+# 最大20回まで繰り返す場合
+./scripts/ralph/ralph.sh "claude --dangerously-skip-permissions" 20
 ```
 
 #### Codex CLI
@@ -43,7 +44,7 @@ OpenAI の自律型エージェントCLIです。
 
 ```bash
 # --full-auto は確認プロンプトを省略します（ヘッドレス実行に必須）
-./scripts/ralph/ralph.sh "codex exec --full-auto"
+./scripts/ralph/ralph.sh "codex exec --full-auto" 20
 ```
 
 #### Gemini CLI
@@ -52,7 +53,7 @@ Google の生成AIエージェントCLIです。
 
 ```bash
 # --yolo は自律的なアクション実行を有効にします
-./scripts/ralph/ralph.sh "gemini --yolo"
+./scripts/ralph/ralph.sh "gemini --yolo" 20
 ```
 
 #### Qwen Code
@@ -64,7 +65,7 @@ Alibaba の Qwen エージェントCLIです。
 # 1. .qwen/settings.json を更新し、完全自律モードを許可します
 #    { "permissions": { "defaultMode": "yolo" } }
 # 2. Ralph を実行します（qwen が stdin を受け取る前提）
-./scripts/ralph/ralph.sh "qwen"
+./scripts/ralph/ralph.sh "qwen" 20
 ```
 
 ## 📁 ファイル構成
