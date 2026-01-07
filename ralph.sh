@@ -6,7 +6,7 @@ MAX_ITERATIONS=${MAX_ITERATIONS:-10}
 AGENT_CMD="$1"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ROOT_DIR="$(dirname "$(dirname "$SCRIPT_DIR")")" # Assumption: scripts/ralph -> scripts -> root
+ROOT_DIR="$(dirname "$(dirname "$SCRIPT_DIR")")"
 
 if [ -z "$AGENT_CMD" ]; then
   echo "Usage: ./ralph-loop/ralph.sh \"<agent command>\" [max_iterations]"
