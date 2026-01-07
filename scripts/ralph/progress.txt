@@ -1,0 +1,9 @@
+# Ralph Progress Log
+Started: 2024-01-07
+
+## Codebase Patterns
+- General: Keep changes small
+
+## Key Files
+- README.md
+---

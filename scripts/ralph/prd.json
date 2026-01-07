@@ -1,0 +1,16 @@
+{
+	"branchName": "ralph/feature",
+	"userStories": [
+		{
+			"id": "US-001",
+			"title": "Example Story",
+			"acceptanceCriteria": [
+				"Create a hello world file",
+				"Verify typecheck passes"
+			],
+			"priority": 1,
+			"passes": false,
+			"notes": ""
+		}
+	]
+}
